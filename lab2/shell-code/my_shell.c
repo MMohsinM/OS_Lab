@@ -91,7 +91,7 @@ void io_redirect(char **tokens){
     }
 }
 
-// Part A
+// Implemented Simple Shell commands using fork and exec
 int parser(char **tokens){
     int wstatus;
 
@@ -120,7 +120,7 @@ int parser(char **tokens){
 
 }
 
-// CHDIR part B
+// Implementation of cd function using chdir system call
 int chdir_routine(char **tokens){
     int flag;
     int i;
