@@ -1,8 +1,8 @@
 # Commands Edited or Added
-##io_redirect
+## io_redirect
 This function changes the STD_IN or STD_OUT of the process
 
-##parser
+## parser
 This function implements basic shell functionality using fork and execvp.
 
 ## Free Routine
