@@ -301,8 +301,10 @@ void reap_finished_children(pid_t *array){
     pid_t x;
     for (int i=0; array[i] != NULL && i<=MAX_CON_PROCESS;i++){
         x = waitpid(array[i], &wstatus, WNOHANG);
-        if (x == array[i])
+        if (x == array[i]){
             delete_pid_index(array, i);
+            printf("Shell: Background command finished");
+        }
     }
 }
 
