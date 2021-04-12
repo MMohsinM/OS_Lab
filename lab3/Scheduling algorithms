@@ -1,1 +1,4 @@
-
+Here I have uploaded 3 files, namely task 1 to 4. Here:
+task1and2.c has the fcfs and sjf scheduling algorithm
+task 3.c has the priority scheduling algorithm
+task4.c has the round robin scheduling algorithm
