@@ -20,6 +20,7 @@ void findResponseTime(int processes[], int n,
 						int bt[], int wt[])
 {
 	int arrival[n];
+	int avg_rt=0,total=0;
 	
 	for (int i =0; i<n;i++)
 		arrival[i]=0;
@@ -30,6 +31,10 @@ void findResponseTime(int processes[], int n,
 	// calculating response time
 	for (int i = 1; i < n ; i++ )	
 		wt[i] = bt[i-1] + wt[i-1] -arrival[i];
+	for (int i=0;i<n;i++)
+		total=wt[i]+total;
+	avg_rt=total/n;
+	printf("Average turn around time = %d ",avg_rt);
 }
 
 	
