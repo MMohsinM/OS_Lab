@@ -1,4 +1,25 @@
 #include<stdio.h>
+void findResponseTime(int processes[], int n,
+						int bt[], int wt[])
+{
+	int arrival[n];
+	int total=0,avg_rt;
+	
+	for (int i =0; i<n;i++)
+		arrival[i]=0;
+	
+	// waiting time for first process is 0
+	wt[0] = 0;
+	
+	// calculating response time
+	for (int i = 1; i < n ; i++ )	
+		wt[i] = bt[i-1] + wt[i-1] -arrival[i];
+		
+	for (int i=0;i<n;i++)
+		total+=wt[i];
+	avg_rt=total/n;
+	printf("\nAverage response Time=%d\n",avg_rt);
+}
  
 int main()
 {
@@ -51,7 +72,8 @@ int main()
  
         total+=wt[i];
     }
- 
+    findResponseTime(n,bt,wt);
+    
     avg_wt=total/n;      //average waiting time
     total=0;
  
