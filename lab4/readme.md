@@ -1,4 +1,6 @@
-# Instruction for compiling and running
+# Instructions for compiling and running
+
+
 For compiling ex7_17.c use the following command
 
 gcc ex7_17.c -lm -lpthread -o 7_17
