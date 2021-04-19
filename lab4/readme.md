@@ -7,7 +7,7 @@ gcc ex7_17.c -lm -lpthread -o 7_17
 
 Then after that 
 
-./7_17 <Number of random points you wish to generate>
+./7_17 'Number of random points you wish to generate'
 
 
 
