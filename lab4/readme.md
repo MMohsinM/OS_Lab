@@ -7,7 +7,7 @@ gcc ex7_17.c -lm -lpthread -o 7_17
 
 Then after that 
 
-./7_17 'Number of random points you wish to generate'
+./7_17    'Number of random points you wish to generate'
 
 
 
@@ -19,7 +19,7 @@ gcc 4.24.c -lpthread -o 4.24
 
 Then after that 
 
-./4.24 <Number of random points you wish to generate>
+./4.24    'Number of random points you wish to generate'
 
 
 
@@ -31,7 +31,7 @@ gcc 4.27.c -lpthread -o 4.27
 
 Then after that 
 
-./4.27 <Length of Faboconi series>
+./4.27    'Length of Faboconi series'
 
 
 
@@ -43,6 +43,6 @@ gcc 7.15.c -lpthread -o 7.15
 
 Then after that 
 
-./7.15 <Length of Faboconi series>
+./7.15    'Length of Faboconi series'
 
 
