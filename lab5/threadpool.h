@@ -1,12 +1,5 @@
-
-// this represents work that has to be 
+// this represents work that has to be
 // completed by a thread in the pool
-typedef struct 
-{
-    void (*function)(void *p);
-    void *data;
-}
-Task;
 
 
 // function prototypes
