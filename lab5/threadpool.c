@@ -47,6 +47,15 @@ void *worker(void *param)
     execute(worktodo->function, worktodo->data);
     //free(worktodo); // Decide whether to free a task struct or not
     out = (out+1)%QUEUE_SIZE;
+     /*if (length != NUMBER_OF_THREADS){ for the case of unequal number of tasks and threads
+    
+    	sem_wait(&empty);  //put the remaining tasks on hold so that a thread becomes free
+    	worktodo = (Task *)Dequeue(Q);    // take task from queue
+    	// execute the task
+    	execute(worktodo->function, worktodo->data);  //task is executed 
+    	sem_post(&full);  
+    	pthread_exit(0);
+    }*/
 
 
     pthread_mutex_unlock(&mutex);
