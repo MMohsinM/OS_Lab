@@ -41,13 +41,14 @@ void *worker(void *param)
     Task* worktodo;
     sem_wait(&full);
     pthread_mutex_lock(&mutex);
-    if (length > NUMBER_OF_THREADS || length < NUMBER_OF_THREADS ){
+    if (length != NUMBER_OF_THREADS){
     
-    	sem_wait(&empty);  //put the remaining tasks on hold
+    	sem_wait(&empty);  //put the remaining tasks on hold so that a thread becomes free
     	worktodo = (Task *)Dequeue(Q);    // take task from queue
     	// execute the task
-    	execute(worktodo->function, worktodo->data);
-    	sem_post(&full);
+    	execute(worktodo->function, worktodo->data);  //task is executed 
+    	sem_post(&full);  
+    	pthread_exit(0);
     }
     
     else {
