@@ -30,7 +30,7 @@ struct tlbentry {
 int getOldestEntry(int tlbSize);
 
 
-typedef enum { false = 0, true = !false } bool; // Simple true or false boolean -- unsure if I want to use yet
+typedef enum { false = 0, true = !false } bool; // Simple true or false boolean
 
 
 // TLB is kept track of as a circular array, with the oldest element being overwritten once the TLB is full.
@@ -81,7 +81,7 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
     bool alreadyThere = false;
     int replaceIndex = -1;
 
-    // SEEK -- > Find the index to replace and increment age for all other entries
+    //Find the index to replace and increment age for all other entries(age in the TLB)
     for (int i = 0; i < TLB_SIZE; i++) {
         if ((strcmp(&(entry->logical[i]), &logical))!=0 && (entry->logical[i] != 0)) {
             // If entry is not in TLB and not a free spot, increment its age
@@ -91,11 +91,11 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
             // Available spot in TLB found
             if (!freeSpotFound) {
                 replaceIndex = i;
-                freeSpotFound = true;
+                freeSpotFound = true; //this flag is updated as a result of the free location
             }
         }
         else if ((strcmp(&(entry->logical[i]),&logical))==0) {
-            // Entry is already in TLB -- Reset its age
+            // Reset entrys' age; in case of duplicate entries which want to be inserted
             if(!alreadyThere) {
                 entry->entryAge[i]= 0;
                 alreadyThere = true;
@@ -105,17 +105,17 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
 
     // REPLACE
     if (alreadyThere) {
-        return;
+        return;  //no need of insertion for a duplicate entry
     }
     else if (freeSpotFound) { // If we found a free spot, insert
         entry->logical[replaceIndex]= logical;    // Insert into free spot
         entry->physical[replaceIndex] = physical;
         entry->entryAge[replaceIndex] = 0;
     }
-    else { // No more free spots -- Need to replace the oldest entry
+    else { // No more free spots 
         replaceIndex = getOldestEntry(TLB_SIZE);
-        entry->logical[replaceIndex] = logical;    // Insert into oldest entry
-        entry->physical[replaceIndex] = physical;
+        entry->logical[replaceIndex] = logical;    // Insert into oldest entry i.e the least used one. Both logical and physical addresses are being inserted
+        entry->physical[replaceIndex] = physical;  
         entry->entryAge[replaceIndex] = 0;
 
     } 
@@ -132,10 +132,10 @@ int getOldestEntry(int tlbSize) {
   for (i = 1; i < tlbSize; i++) {
     if (entry->entryAge[i] > max) {
        index = i;
-       max = entry->entryAge[i];
+       max = entry->entryAge[i];  //retrieves max age of element inside the TLB
     }
   }
-  return index;
+  return index; //retrieves the index with oldest age in TLB
   
  } 
 
@@ -200,7 +200,7 @@ int main(int argc, const char *argv[])
             }
             
             // Also add (page, frame) to TLB
-            //add_to_tlb(logical_page, physical_page);
+           
             tlbLRUinsert(logical_page, physical_page);
             
         }
