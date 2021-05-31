@@ -87,7 +87,7 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
             // If entry is not in TLB and not a free spot, increment its age
             entry->entryAge[i]++;
         }
-        else if ((strcmp(&(entry->logical[i]), &logical))!=0 && (entry->logical[i] == 0)) {
+        else if ((strcmp(&(entry->logical[i]), &logical))!=0 && (entry->logical[i] == 0)) { //second argument here refers to whether the tlb space is free
             // Available spot in TLB found
             if (!freeSpotFound) {
                 replaceIndex = i;
@@ -98,7 +98,7 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
             // Reset entrys' age; in case of duplicate entries which want to be inserted
             if(!alreadyThere) {
                 entry->entryAge[i]= 0;
-                alreadyThere = true;
+                alreadyThere = true;  //flagupdated for already existing entry
             }
         }
     }
