@@ -77,9 +77,13 @@ int search_tlb(unsigned char logical_page) {
 void tlbLRUinsert(unsigned char logical, unsigned char physical)
 {
     struct tlbentry *entry = &tlb[tlbindex];
+    tlbindex++;
     bool freeSpotFound = false;
     bool alreadyThere = false;
     int replaceIndex = -1;
+    if (tlbindex == TLB_SIZE)
+    	{ tlbindex = 0;}
+    
 
     //Find the index to replace and increment age for all other entries(age in the TLB)
     for (int i = 0; i < TLB_SIZE; i++) {
@@ -103,7 +107,7 @@ void tlbLRUinsert(unsigned char logical, unsigned char physical)
         }
     }
 
-    // REPLACE
+    //if-else construct for insertion of addresses
     if (alreadyThere) {
         return;  //no need of insertion for a duplicate entry
     }
